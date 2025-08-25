@@ -147,7 +147,7 @@ export default function TaskManagerPage() {
         <Card className="mb-8 shadow-lg border-0">
           <CardHeader className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50">
             <CardTitle className="flex items-center gap-2">
-              <Plus className="w-5 h-5" />
+              <Plus className="w-8 h-8" />
               Create New Task
             </CardTitle>
           </CardHeader>

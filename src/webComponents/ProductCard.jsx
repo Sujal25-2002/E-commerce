@@ -46,9 +46,8 @@ export default function ProductCard({ product }) {
       "Designer High Heels": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=400&fit=crop",
       "Flawless Foundation": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=400&fit=crop",
       "Luxury Lipstick Set": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop",
-      "Professional Eye Shadow Palette":
-        "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&h=400&fit=crop",
-      "Hydrating Moisturizer": "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=400&h=400&fit=crop",
+      "Professional Eye Shadow Palette": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&h=400&fit=crop",
+      "Hydrating Moisturizer": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400&h=400&fit=crop",
     }
     return imageMap[productName] || `https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop`
   }
@@ -86,10 +85,7 @@ export default function ProductCard({ product }) {
       </CardContent>
 
       <CardFooter className="p-4 pt-2">
-        <Button
-          onClick={handleAddToCart}
-          className="w-full flex items-center gap-2 hover:bg-primary/90 transition-all duration-200 hover:shadow-md active:scale-95"
-        >
+        <Button onClick={handleAddToCart} className="w-full cursor-pointer flex items-center gap-2 hover:bg-primary/90 hover:shadow-md">
           <ShoppingCart size={18} />
           Add to Cart
         </Button>

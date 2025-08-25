@@ -113,7 +113,7 @@ export default function CheckoutDialog({ open, onOpenChange, total }) {
     switch (currentStep) {
       case 1:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4 mb-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="name">Full Name *</Label>
@@ -203,7 +203,7 @@ export default function CheckoutDialog({ open, onOpenChange, total }) {
 
       case 2:
         return (
-          <div className="space-y-4">
+          <div className="space-y-4 p-1">
             <div className="grid gap-4">
               <Card
                 className={`cursor-pointer transition-all ${formData.paymentMethod === "cod" ? "ring-2 ring-blue-500 bg-blue-50" : "hover:shadow-md"}`}
@@ -276,72 +276,84 @@ export default function CheckoutDialog({ open, onOpenChange, total }) {
 
   return (
     <>
-      {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
-
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:w-full sm:max-w-4xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto m-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-center sm:text-left">Checkout</DialogTitle>
+        <DialogContent className="w-[95vw] sm:w-full sm:max-w-4xl h-[95vh] sm:h-auto sm:max-h-[90vh] overflow-hidden flex flex-col p-4 sm:p-6">
+          {showConfetti && (
+            <div className="fixed inset-0 pointer-events-none z-50">
+              <Confetti 
+                width={window?.innerWidth || 1200} 
+                height={window?.innerHeight || 800}
+                recycle={false}
+                numberOfPieces={200}
+              />
+            </div>
+          )}
+          
+          <DialogHeader className="flex-shrink-0 pb-2 sm:pb-4">
+            <DialogTitle className="text-lg sm:text-2xl font-bold text-center sm:text-left">Checkout</DialogTitle>
           </DialogHeader>
 
-          <div className="flex items-center justify-center mb-6 sm:mb-8 px-2">
-            <div className="flex items-center justify-center flex-wrap sm:flex-nowrap gap-2 sm:gap-0">
-              {steps.map((step, index) => (
-                <div key={step.id} className="flex items-center flex-shrink-0">
-                  <div
-                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold ${
-                      currentStep >= step.id ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-                    }`}
-                  >
-                    {step.id}
-                  </div>
-                  <div className="ml-2 hidden sm:block">
-                    <p
-                      className={`text-xs sm:text-sm font-medium ${currentStep >= step.id ? "text-blue-600" : "text-gray-500"}`}
-                    >
-                      {step.title}
-                    </p>
-                  </div>
-                  {index < steps.length - 1 && (
+          <div className="flex-shrink-0 mb-4 sm:mb-6">
+            <div className="flex items-center justify-center px-2">
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                {steps.map((step, index) => (
+                  <div key={step.id} className="flex items-center">
                     <div
-                      className={`w-4 sm:w-8 lg:w-12 h-0.5 mx-1 sm:mx-2 lg:mx-4 flex-shrink-0 ${currentStep > step.id ? "bg-blue-600" : "bg-gray-200"}`}
-                    />
-                  )}
-                </div>
-              ))}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-xs sm:text-sm font-semibold ${
+                        currentStep >= step.id ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
+                      }`}
+                    >
+                      {step.id}
+                    </div>
+                    <div className="ml-1 sm:ml-2 hidden sm:block">
+                      <p
+                        className={`text-xs sm:text-sm font-medium ${currentStep >= step.id ? "text-blue-600" : "text-gray-500"}`}
+                      >
+                        {step.title}
+                      </p>
+                    </div>
+                    {index < steps.length - 1 && (
+                      <div
+                        className={`w-3 sm:w-8 lg:w-12 h-0.5 mx-1 sm:mx-2 lg:mx-4 ${currentStep > step.id ? "bg-blue-600" : "bg-gray-200"}`}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Step Content */}
-          <div className="mb-6 sm:mb-8">{renderStepContent()}</div>
+          <div className="flex-1 overflow-y-auto mb-4 sm:mb-6">{renderStepContent()}</div>
 
-          <div className="flex flex-col-reverse sm:flex-row justify-between gap-3 pt-4 border-t">
-            <Button
-              variant="outline"
-              onClick={currentStep === 3 ? handleClose : handleBack}
-              disabled={currentStep === 1}
-              className="flex items-center justify-center gap-2 w-full sm:w-auto bg-transparent"
-            >
-              {currentStep === 3 ? (
-                "Close"
-              ) : (
-                <>
-                  <ArrowLeft size={16} />
-                  Back
-                </>
-              )}
-            </Button>
-
-            {currentStep < 3 && (
+          <div className="flex-shrink-0 pt-3 sm:pt-4 border-t">
+            <div className="flex flex-col-reverse sm:flex-row justify-between gap-3">
               <Button
-                onClick={handleNext}
-                disabled={!isStepValid()}
-                className="flex items-center justify-center gap-2 w-full sm:w-auto"
+                variant="outline"
+                onClick={currentStep === 3 ? handleClose : handleBack}
+                disabled={currentStep === 1}
+                className="flex items-center justify-center gap-2 w-full sm:w-auto bg-transparent"
               >
-                {currentStep === 2 ? "Place Order" : "Next"}
-                <ArrowRight size={16} />
+                {currentStep === 3 ? (
+                  "Close"
+                ) : (
+                  <>
+                    <ArrowLeft size={16} />
+                    Back
+                  </>
+                )}
               </Button>
-            )}
+
+              {currentStep < 3 && (
+                <Button
+                  onClick={handleNext}
+                  disabled={!isStepValid()}
+                  className="flex items-center justify-center gap-2 w-full sm:w-auto"
+                >
+                  {currentStep === 2 ? "Place Order" : "Next"}
+                  <ArrowRight size={16} />
+                </Button>
+              )}
+            </div>
           </div>
         </DialogContent>
       </Dialog>

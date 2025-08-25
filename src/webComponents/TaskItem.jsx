@@ -144,8 +144,7 @@ export default function TaskItem({ task, onToggle, onDelete }) {
             onClick={() => onDelete(task.id)}
             className="flex items-center gap-1 hover:shadow-md transition-all duration-200 flex-shrink-0"
           >
-            <Trash2 size={14} />
-            Delete
+            <Trash2 size={10} />
           </Button>
         </div>
       </CardContent>

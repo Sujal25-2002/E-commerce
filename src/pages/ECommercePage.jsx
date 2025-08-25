@@ -30,10 +30,6 @@ const products = [
 
 export default function ECommercePage() {
   const [selectedCategory, setSelectedCategory] = useState("All")
-  const [viewMode, setViewMode] = useState("grid")
-  const { items } = useSelector((state) => state.cart)
-  const navigate = useNavigate()
-
   const categories = ["All", "Clothes", "Shoes", "Cosmetics"]
 
   const filteredProducts =
@@ -49,23 +45,6 @@ export default function ECommercePage() {
             </h1>
             <p className="text-muted-foreground mt-1">Discover amazing products at great prices</p>
           </div>
-          {/* <div className="flex items-center gap-3">
-            <Button variant="outline" size="icon" onClick={() => setViewMode(viewMode === "grid" ? "list" : "grid")}>
-              {viewMode === "grid" ? <List size={18} /> : <Grid3X3 size={18} />}
-            </Button>
-            <Button
-              onClick={() => navigate("/cart")}
-              className="flex items-center gap-2 relative hover:shadow-lg transition-all duration-200"
-            >
-              <ShoppingBag size={18} />
-              Cart
-              {items.length > 0 && (
-                <Badge className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
-                  {items.length}
-                </Badge>
-              )}
-            </Button>
-          </div> */}
         </div>
 
         <div className="mb-8">

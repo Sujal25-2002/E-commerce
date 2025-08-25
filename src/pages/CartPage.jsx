@@ -23,10 +23,10 @@ export default function CartPage() {
             Continue Shopping
           </Button>
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="sm:text-3xl text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Shopping Cart
             </h1>
-            <p className="text-muted-foreground">Review your items and proceed to checkout</p>
+            <p className="text-muted-foreground sm:text-sm text-sm">Review your items and proceed to checkout</p>
           </div>
         </div>
 

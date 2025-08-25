@@ -35,7 +35,7 @@ export default function HomePage() {
                 <li>• Redux state management</li>
               </ul>
               <Link to="/ecommerce">
-                <Button className="w-full">Explore E-Commerce</Button>
+                <Button className="w-full cursor-pointer">Explore E-Commerce</Button>
               </Link>
             </CardContent>
           </Card>
@@ -59,7 +59,7 @@ export default function HomePage() {
                 <li>• LocalStorage persistence</li>
               </ul>
               <Link to="/tasks">
-                <Button className="w-full">Manage Tasks</Button>
+                <Button className="w-full cursor-pointer">Manage Tasks</Button>
               </Link>
             </CardContent>
           </Card>
