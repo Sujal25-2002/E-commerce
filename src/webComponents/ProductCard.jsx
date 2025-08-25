@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addToCart } from "@/store/cartSlice"
 import { Button } from "@/components/ui/button"
@@ -9,16 +10,15 @@ import { ShoppingCart, Star } from "lucide-react"
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch()
+  const [isPressed, setIsPressed] = useState(false)
 
   const handleAddToCart = () => {
     dispatch(addToCart(product))
-    const button = document.activeElement
-    if (button) {
-      button.style.transform = "scale(0.95)"
-      setTimeout(() => {
-        button.style.transform = "scale(1)"
-      }, 150)
-    }
+    // Use React state instead of direct DOM manipulation
+    setIsPressed(true)
+    setTimeout(() => {
+      setIsPressed(false)
+    }, 150)
   }
 
   const getCategoryColor = (category) => {
@@ -85,7 +85,12 @@ export default function ProductCard({ product }) {
       </CardContent>
 
       <CardFooter className="p-4 pt-2">
-        <Button onClick={handleAddToCart} className="w-full cursor-pointer flex items-center gap-2 hover:bg-primary/90 hover:shadow-md">
+        <Button 
+          onClick={handleAddToCart} 
+          className={`w-full flex items-center cursor-pointer gap-2 hover:bg-primary/90 hover:shadow-md transition-all duration-150 ${
+            isPressed ? 'scale-95' : 'scale-100'
+          }`}
+        >
           <ShoppingCart size={18} />
           Add to Cart
         </Button>
